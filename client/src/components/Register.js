@@ -10,11 +10,62 @@ function Register() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    // Validate first name
+    if (!firstName.trim()) {
+      errors.firstName = 'First name is required';
+    }
+
+    // Validate last name
+    if (!lastName.trim()) {
+      errors.lastName = 'Last name is required';
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      errors.email = 'Invalid email address';
+    }
+
+    // Validate password
+    if (password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$#!%*?&]/.test(password)) {
+      errors.password = 'Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character';
+    }
+
+    // Validate password confirmation
+    if (password !== confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
+
+    // Validate phone number
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone.trim())) {
+      errors.phone = 'Invalid phone number (10 digits)';
+    }
+
+    // Validate address
+    if (!address.trim()) {
+      errors.address = 'Address is required';
+    }
+
+    setValidationErrors(errors);
+
+    return Object.keys(errors).length === 0; // Return true if there are no errors
+  };
 
   const handleRegister = () => {
-    // Add your registration logic here, e.g., validation, API call, etc.
-    // For now, let's simulate a successful registration after clicking the button.
-    setRegistrationSuccessful(true);
+    const isValid = validateForm();
+
+    if (isValid) {
+      // Add your registration logic here, e.g., API call, etc.
+      setRegistrationSuccessful(true);
+    }
   };
 
   return (
@@ -36,6 +87,9 @@ function Register() {
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
+              {validationErrors.firstName && (
+                <div className="error-message">{validationErrors.firstName}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -47,6 +101,9 @@ function Register() {
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
+              {validationErrors.lastName && (
+                <div className="error-message">{validationErrors.lastName}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -58,6 +115,9 @@ function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              {validationErrors.email && (
+                <div className="error-message">{validationErrors.email}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -69,6 +129,9 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              {validationErrors.password && (
+                <div className="error-message">{validationErrors.password}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -80,6 +143,9 @@ function Register() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
+              {validationErrors.confirmPassword && (
+                <div className="error-message">{validationErrors.confirmPassword}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -91,6 +157,9 @@ function Register() {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
+              {validationErrors.phone && (
+                <div className="error-message">{validationErrors.phone}</div>
+              )}
             </div>
 
             <div className="form-group">
@@ -102,6 +171,9 @@ function Register() {
                 onChange={(e) => setAddress(e.target.value)}
                 required
               />
+              {validationErrors.address && (
+                <div className="error-message">{validationErrors.address}</div>
+              )}
             </div>
 
             <button type="button" onClick={handleRegister} className="btn-register">

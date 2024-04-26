@@ -50,7 +50,7 @@ const HealthInformation = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', backgroundColor: 'lavender', padding: '20px', borderRadius: '8px', width: '98%' }}>
+    <div style={{ textAlign: 'center', padding: '20px', borderRadius: '8px', width: '98%' }}>
       <h1>Health Information</h1>
       <label>Select Age Group:</label>
       <select value={ageGroup} onChange={handleAgeGroupChange}>
@@ -64,7 +64,7 @@ const HealthInformation = () => {
       {ageGroup && (
         <div style={{ textAlign: 'left', marginTop: '20px' }}>
           <h2>Diet Plan for {ageGroup} Age Group:</h2>
-          <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px', margin: '10px 0' }}>
+          <div style={{  padding: '20px', borderRadius: '8px', margin: '10px 0' }}>
             <p>{dietPlan.description}</p>
 
             <h3>What to Eat:</h3>

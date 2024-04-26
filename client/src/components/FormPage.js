@@ -1,4 +1,3 @@
-// FormPage.js
 import React, { useState } from 'react';
 
 const FormPage = () => {
@@ -33,7 +32,7 @@ const FormPage = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       <h1 style={{ textAlign: 'center' }}>Form Page</h1>
       
       {formSubmitted ? (
@@ -51,7 +50,7 @@ const FormPage = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            style={{ width: '90%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
+            style={{ width: '100%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
           />
         </div>
 
@@ -63,7 +62,7 @@ const FormPage = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            style={{ width: '90%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
+            style={{ width: '100%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
           />
         </div>
 
@@ -75,11 +74,12 @@ const FormPage = () => {
             rows="4"
             value={formData.message}
             onChange={handleChange}
-            style={{ width: '90%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
+            style={{ width: '100%', padding: '10px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '5px' }}
           />
         </div>
-
+        <div style={{ textAlign: 'center' }}> {/* Center the button */}
         <button type="submit" style={{ backgroundColor: '#2f2da9', color: 'white', padding: '15px', cursor: 'pointer', border: 'none', borderRadius: '5px', fontSize: '1.2rem', width: '100%' }}>Submit</button>
+        </div>
       </form>
     </div>
   );

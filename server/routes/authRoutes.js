@@ -1,11 +1,13 @@
 //A LARGE MARJORITY OF THIS CODE WAS TAKEN FROM THE FOLLOWING YOUTUBE VIDEO
 //https://www.youtube.com/watch?v=HGgyd1bYWsE
-
+const express = require('express');
 const router = require("express").Router();
 const { User } = require("../models/users");
 const joi = require("joi");
 const bcrypt = require("bcrypt");
-
+const authController = require('../controllers/authController');
+router.post('/register', authController.userRegister);
+router.post('/login', authController.userLogin);
 router.post("/", async (req, res) => {
   try {
     const validate = (user) => {

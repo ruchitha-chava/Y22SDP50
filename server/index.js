@@ -3,7 +3,6 @@ const app=express();
 const PORT = process.env.PORT ||5000 
 const path = require('path'); 
 const db =require('./config/db'); 
-const {MongoClient}=require('mongodb')
 // Import the routes here 
 //const studentRoutes = require('./routes/studentRoutes'); 
 //const counsellorRoutes = require('./routes/counsellorRoutes'); 
@@ -12,25 +11,8 @@ const {MongoClient}=require('mongodb')
 //app.use('/students', studentRoutes); 
 //app.use('/counselors', counselorRoutes); 
 app.use(express.json()); 
-
  
-
-app.get('/',(req,res)=>
-{
-  res.send("Form page")
-})
-app.post('/form',(req,res)=>{
-  console.log(req.body);
-  col.insertOne(req.body);
-  res.send("Data received")
-})
-app.post('/register',(req,res)=>{
-  console.log(req.body);
-  col.insertOne(req.body);
-  res.send("Data received")
-})
-
-
+ 
 // Serve static files from the 'public' directory 
 app.use(express.static(path.join(__dirname, 'public'))); 
  
@@ -52,11 +34,23 @@ app.listen(PORT,()=>{
     console.log("Server listening on port ${PORT}") 
 });
 
-
+app.get('/',(req,res)=>
+{
+  res.send("Form page")
+})
+app.post('/form',(req,res)=>{
+  console.log(req.body);
+  col.insertOne(req.body);
+  res.send("Data received")
+})
+app.post('/register',(req,res)=>{
+  console.log(req.body);
+  col.insertOne(req.body);
+  res.send("Data received")
+})
+/*const db = require('./config/db.js'); 
  
 //Connection with DB  
 db.once('open', () => {  
    console.log('Database connection is open.');  
-    });
-
-    
+    });*/

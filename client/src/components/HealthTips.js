@@ -61,7 +61,7 @@ const HealthTips = () => {
   };
 
   return (
-    <div style={whiteBackground}>
+    <div >
       <h2 style={{ marginBottom: '20px' }}>Health Tips</h2>
       {tips.map((tip, index) => (
         <div key={index} style={accordionItemStyle}>
